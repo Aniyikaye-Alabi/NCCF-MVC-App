@@ -1,0 +1,14 @@
+﻿@model NCCF_MVC_App.Models.UsersProfile;
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<form asp-action="Login">
+    <input type="text" name="Username" value="" placeholder="Username" />
+    <input type="password" name="Password" value="" placeholder="Password" />
+    <input type="submit" asp-controller="Home" asp-action="Login" />
+</form>
+

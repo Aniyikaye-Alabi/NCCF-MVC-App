@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCCF MVC App", "NCCF MVC App.csproj", "{7998E35E-5C55-4059-8E1E-E244F4E5DFEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7998E35E-5C55-4059-8E1E-E244F4E5DFEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7998E35E-5C55-4059-8E1E-E244F4E5DFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7998E35E-5C55-4059-8E1E-E244F4E5DFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7998E35E-5C55-4059-8E1E-E244F4E5DFEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB44867E-937D-40DC-8033-5CE50256B25B}
+	EndGlobalSection
+EndGlobal
