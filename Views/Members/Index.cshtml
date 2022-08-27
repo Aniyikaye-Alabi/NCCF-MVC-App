@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NCCF_MVC_App.Models.Member>
+﻿@model IEnumerable<NCCF_MVC_App.DTOs.MemberDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -37,13 +37,13 @@
                 @Html.DisplayFor(modelItem => item.MemberName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RoomId)
+                @Html.DisplayFor(modelItem => item.RoomName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Age)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UnitId)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PostHeld)
@@ -56,6 +56,5 @@
         </tr>
 }
     </tbody>
-}
+
 </table>
-<a asp-controller="Members" asp-action="Logout">Logout</a>

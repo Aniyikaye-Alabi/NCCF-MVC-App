@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NCCF_MVC_App.DTOs;
 using NCCF_MVC_App.Models;
 using Newtonsoft.Json;
 
@@ -21,14 +22,42 @@ namespace NCCF_MVC_App.Controllers
         // GET: Members
         public async Task<IActionResult> Index()
         {
-            var UsersessionData = JsonConvert.DeserializeObject<Member>(HttpContext.Session.GetString("UserSession"));
-            if (UsersessionData == null)
-            {
-                return Content("No session data found");
+            // Not related to this code section, but it is presently up for keeps;
+            //var UsersessionData = JsonConvert.DeserializeObject<Member>(HttpContext.Session.GetString("UserSession"));
+            //if (UsersessionData == null)
+            //{
+            //    return Content("No session data found");
 
-            }
+            //}
+            var data = await _context.Members.Join(
+                _context.Rooms,
+                member => member.RoomId,
+                room => room.RoomId,
+                (member, room) => new
+                {
+                    member,
+                    room,
+                })
+                .Join(
+                _context.Units,
+                m => m.member.UnitId,
+                unit => unit.UnitId,
+                (m, unit) => new
+                {
+                    m,
+                    unit
+                }).Select(s => new MemberDto
+                {
+                    MemberName = s.m.member.MemberName,
+                    RoomName = s.m.room.RoomName,
+                    Age = s.m.member.Age,
+                    PostHeld = s.m.member.PostHeld,
+                    UnitId = s.m.member.UnitId,
+                    Name = s.unit.Name
+                }).ToListAsync();
+
               return _context.Members != null ? 
-                          View(await _context.Members.ToListAsync()) :
+                          View(data) :
                           Problem("Entity set 'NCCF_DatabaseContext.Members'  is null.");
         }
 
@@ -53,6 +82,20 @@ namespace NCCF_MVC_App.Controllers
         // GET: Members/Create
         public IActionResult Create()
         {
+            var roomdata = _context.Rooms.Select(x => new
+            {
+                x.RoomId,
+                x.RoomName
+            }).ToList();
+            var unitdata = _context.Units.Select(s => new
+            {
+                s.UnitId,
+                s.Name
+            }).ToList();
+            SelectList roomsList = new SelectList(roomdata, "RoomId", "RoomName");
+            SelectList unitsList = new SelectList(unitdata, "UnitId", "Name");
+            ViewBag.RoomsList = roomsList;
+            ViewBag.UnitsList = unitsList;
             return View();
         }
 

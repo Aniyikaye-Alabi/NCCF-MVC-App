@@ -18,9 +18,14 @@
                 <span asp-validation-for="MemberName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RoomId" class="control-label"></label>
-                <input asp-for="RoomId" class="form-control" />
+                <label asp-for="RoomId" class="control-label">Room Name</label>
+                @*<input asp-for="RoomId" class="form-control" />*@
+                 @Html.DropDownListFor(model => model.RoomId, ViewBag.RoomsList as SelectList, "Select Room Name", new {@class = "form-control"})
                 <span asp-validation-for="RoomId" class="text-danger"></span>
+                @*<select>
+                    <option value=""></option>
+                </select>*@
+               
             </div>
             <div class="form-group">
                 <label asp-for="Age" class="control-label"></label>
@@ -29,7 +34,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="UnitId" class="control-label"></label>
-                <input asp-for="UnitId" class="form-control" />
+                @*<input asp-for="UnitId" class="form-control" />*@
+                @Html.DropDownListFor(model => model.UnitId, ViewBag.UnitsList as SelectList, "Select Unit", new {@class = "form-control"})
                 <span asp-validation-for="UnitId" class="text-danger"></span>
             </div>
             <div class="form-group">
